@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<script >
+
+var flag="";
+var rowc=0;
+var rowcc=0;
+
+onload = function() 
+{
+		var script_url="https://script.google.com/macros/s/AKfycbww_iLfsrfzjfaas5U89oseeaRdN3VCN9grRW3oDgVvUGqlMzQ/exec";
+		var url = script_url+"?action=read";
+		document.getElementById("loading").style.visibility = "visible";
+		document.getElementById("loading2").style.visibility = "visible";
+		
+		$.getJSON(url, function (json) 
+			{
+				flag="JSON Accessed";
+				var flagsl=1;
+				
+				var table = document.getElementById("myTableData");
+				var count=0;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						var C1=json.records[i].Date1;
+						var C2=json.records[i].Ref_Number;
+						var C3=json.records[i].subject;
+						var C4=json.records[i].Designation;
+						var C5=json.records[i].Current_Status;
+						var C6=json.records[i].Aging;
+						var C7=json.records[i].Remarks;
+						
+							if(C5=="ApprovalPending")
+							{
+									count=count+1;
+									tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									tabCell.innerHTML =flagsl;
+									flagsl++;
+									tabCell = tr.insertCell(-1);
+									
+									var today0 = new Date(C1);
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+dd+"/"+mm+"/"+yyyy+"";
+									
+									tabCell.innerHTML = today1;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].Designation;
+									tabCell = tr.insertCell(-1);
+
+									tabCell.innerHTML = json.records[i].Ref_Number;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].subject;
+									tabCell = tr.insertCell(-1);
+									var agingvalue="";
+									
+									var today0 = new Date();
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+mm+"/"+dd+"/"+yyyy+"";
+									
+									
+									var eedate0=json.records[i].Date1;
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									
+									var dateOne = new Date(yyyy, mm, dd); //Year, Month, Date  
+      							    var dateTwo = new Date(year, month, dt);
+											
+									var dateFirst = new Date(today1);
+        						 var dateSecond = new Date(eedatefinal);
+								  var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+								 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));		
+											
+									if(C5=="Approved")
+									{
+									tabCell.innerHTML ="Already Approved"	
+									}
+									else
+									{
+										tabCell.innerHTML = diffDays;
+									}
+
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].Current_Status;
+									tabCell = tr.insertCell(-1);
+									
+									
+									
+									tabCell.innerHTML = json.records[i].Remarks;
+									tabCell = tr.insertCell(-1);
+									
+									
+									if(C5=="Approved")
+									{
+									tabCell.innerHTML ="Already Approved"	
+									}
+									else
+									{
+										
+									
+									var btn=document.createElement("INPUT");
+									btn.setAttribute("type","Button");
+									btn.setAttribute("onclick","Approve(this)");
+									btn.setAttribute("id","buttons"+rowcc+"");				
+									//btn.setAttribute("value",""+rowcc+"");
+									btn.setAttribute("value","Approve");
+									tabCell.appendChild(btn);
+									}
+									
+									
+									
+								}
+					}
+								
+						
+						stopspin();
+	    });
+		
+
+}
+function CountRows() 
+{
+	
+		 var totalRowCount = 0;
+        var rowCount = 0;
+        var table = document.getElementById("customers");
+        var rows = table.getElementsByTagName("tr")
+		for (var i = 0; i < rows.length; i++) {
+            totalRowCount++;
+            if (rows[i].getElementsByTagName("td").length > 0) {
+                rowCount++;
+            }
+        }
+        rowc=rowCount;
+}
+
+
+function Approve(x) 
+     {
+		 
+		 var rowIndex = $(x).closest('tr').index();
+		CountRows() ;
+		var k1=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		var script_url = "https://script.google.com/macros/s/AKfycbxYtmU5zB_a0dXe2WvZ8laBHu6LieKNWkIFOPqph2L50CyR4-I/exec"
+		var url = script_url+"?callback=ctrlq&a1="+k1+"&action=edit";
+			var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+});
+			location.reload();
+		
+	
+	}
+
+
+function Delete(x) 
+     {
+		 var rowIndex = $(x).closest('tr').index();
+		 var k1=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		 var r = confirm("Are you shure to delete?");
+if (r == true) {
+  var script_url = "https://script.google.com/macros/s/AKfycbxkDtxGNzTaKk6QKq1sRVUG6B3Oub4ZUllgSZq113IDZRPng6Z7/exec";
+			var url = script_url+"?callback=ctrlq&ref="+k1+"&action=insert";
+			var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+});
+			location.reload();
+} else {
+ 
+}
+		 
+		 	
+	
+	}
+
+
+
+
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+	}
+	 	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+<body>
+<div align="center" style="position:fixed;background:#000000; width:99%; height:98%; opacity:0.5;" id="loading2">
+<script>
+document.write(flag);
+</script>
+<div class="loader2" style=" position:fixed;top:35%; left:44%;" id="loading"></div>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="1338" height="117" border="0" style="height: inherit; text-align: right; font-size: 14px;">
+    <tr>
+      <td width="259" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="30" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="139" style="text-align: center; font-family: Arial;"><a href="../Approval Bench/add.html" style="text-decoration: none;">ADD APPROVAL</a></td>
+      <td width="146" style="text-align: center"><a href="../Approval Bench/view.html"><a href="pad_view (All).html "style="text-decoration: none;">VIEW APPROVAL</a></td>
+      <td width="154" style="text-align: center">PENDING APPROVALS</td>
+      <td width="584" bgcolor="#FFFFFF"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+
+<table id="customers" style="width:100%;table-layout: auto;">
+  <tr style="text-align: justify; font-family: Arial;">
+    <th width="5%" height="56">SL.NO</th>
+    <th width="8%">DATE</th>
+    <th width="8%">DESIGNATION</th> 
+    <th width="4%"><p>REFERANCE NUMBER</p></th>
+    <th width="8%">SUBJECT</th>
+    <th width="6%">AGING</th> 
+    <th width="8%">CURRENT STATUS</th>
+    <th width="8%">REMARKS</th>
+    <th width="5%">APPROVE</th>
+  </tr>
+  
+ 								
+</table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

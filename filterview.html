@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<script >
+
+var flag="";
+
+function filterview() 
+{
+		flag="Function Called";
+		
+		var script_url="https://script.google.com/macros/s/AKfycbxeyWUTKmTFyZp8jr3wKCgfNDH10hnIPEu6clXnKo_kDzlOvXA/exec";
+		var url = script_url+"?action=read";
+		document.getElementById("loading").style.visibility = "visible";
+		document.getElementById("loading2").style.visibility = "visible";
+		
+		$.getJSON(url, function (json) 
+			{
+				flag="JSON Accessed";
+				alert(flag);
+				var table = document.getElementById("myTableData");
+				var count=0;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						var D1=json.records[i].SL_NO;
+						var D2=json.records[i].PROJECT_NAME;
+						var D3=json.records[i].TASK;
+						var D4=json.records[i].DESCRIPTION;
+						var D5=json.records[i].STATUS;
+						var D6=json.records[i].DIVISION_NAME;
+						var D7=json.records[i].ASSIGNED_TO;
+						var D8=json.records[i].AGING;
+						var D9=json.records[i].REMARKS;
+						var D10=json.records[i].EXPECTED_START_DATE;
+						var D11=json.records[i].ACTUAL_START_DATE;
+						
+						
+						
+						var eedate0=json.records[i].EXPECTED_END_DATE;
+						
+									var date = new Date(eedate0);
+									var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var dt = date.getDate();	
+						var D12=""+year+"-"+month+"-"+dt+"";
+						
+						var D13=json.records[i].ACTUAL_END_DATE;
+					
+						var E2=document.getElementById("pro").value;
+						var E5=document.getElementById("sta").value;
+						var E7=document.getElementById("ato").value;
+						var E12=document.getElementById("eed").value;
+					
+						
+						if(D2==E2||D2=="-"&&D5==E5||D5=="-")
+						{
+							alert(D1+D2+D3+D4+D5+D6+D7+D8);
+						}
+						else
+						{
+							
+						alert("else working");
+									
+						}
+									
+								}
+								
+						
+						stopspin();
+	    });
+		
+
+}
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+	}
+	 	
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+<body>
+<div align="center" style="position:fixed;background:#000000; width:99%; height:98%; opacity:0.5; visibility:hidden" id="loading2">
+
+<div class="loader2" style=" position:fixed;top:35%; left:44%; visibility:hidden" id="loading"></div>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="1338" height="117" border="0" style="height: inherit; text-align: center; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="259" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="30" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="139" style="text-align: center; font-family: Arial;"><a href="pad_assign.html" style="text-decoration: none;">ASSIGN WORK</a></td>
+      <td width="146">VIEW WORK</td>
+      <td width="326">&nbsp;</td>
+      <td width="412" bgcolor="#FFFFFF"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+<table width="1337" height="57" border="0">
+  <tr>
+    <td width="347" height="23" class="searchhead" style="text-align: center">Project Name</td>
+    <td width="165" class="searchhead" style="text-align: center">Status</td>
+    <td width="113" class="searchhead" style="text-align: center">Assigned to</td>
+    <td width="157" class="searchhead" style="text-align: center">Expected End Date</td>
+    <td width="108">&nbsp;</td>
+    <td width="18">&nbsp;</td>
+    <td width="74">&nbsp;</td>
+    <td width="25">&nbsp;</td>
+    <td width="24">&nbsp;</td>
+    <td width="129">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="26"><form id="form1" name="form1" method="post" action="">
+      <label for="pro"></label>
+      <select name="pro" id="pro">
+      <option value="CCEK NSDT CAMPUS PROGRAM 2019-20">CCEK NSDT CAMPUS PROGRAM 2019-20</option>
+     <option value="CCEK DCA PROGRAM">CCEK DCA PROGRAM</option>
+     <option value="CCEK-CO-ORDINATION">CCEK-CO-ORDINATION</option>
+     <option value="IIB DIRECT BUSINESS">IIB DIRECT BUSINESS</option>
+     <option value="IIB STC BUSINESS">IIB STC BUSINESS</option>
+     <option value="KELTRON CAMPUS PROGRAM">KELTRON CAMPUS PROGRAM</option>
+     <option value="KELTRON CENTRE PROGRAM">KELTRON CENTRE PROGRAM</option>
+     <option value="KELTRON INTERNSHIP PROGRAM">KELTRON INTERNSHIP PROGRAM</option>
+     <option value="DDU-GKY">DDU-GKY</option>
+     <option value="SRC VSDT PROGRAM FOR JAIL INMATES">SRC VSDT PROGRAM FOR JAIL INMATES</option>
+     <option value="SRC 1000 PDHMC">SRC 1000 PDHMC</option>
+     <option value="DFLAT">DFLAT</option>
+     <option value="IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS">IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS</option>
+     <option value="RCF INTERNSHIP">RCF INTERNSHIP</option>
+     <option value="LEGRAND RPL PROGRAM">LEGRAND RPL PROGRAM</option>
+     <option value="SRC SHE-SMART">SRC SHE-SMART </option>
+     <option value="KAICO">KAICO</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2017">SRC NSDT CAMPUS PROGRAM 2017</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2018">SRC NSDT CAMPUS PROGRAM 2018</option>
+     <option value="">-</option>
+      </select>
+    </form></td>
+    <td><form id="form2" name="form2" method="post" action="">
+      <label for="sta"></label>
+      <select name="sta" id="sta">
+        <option value=">WORK STARTED">WORK STARTED</option>
+     <option value="WORK PROGRESSING">WORK PROGRESSING</option>
+     <option value="WORK POSTPONED">WORK POSTPONED</option>
+     <option value="WORK FINISHED">WORK FINISHED</option>
+     <option value="APPROVAL PENDING">APPROVAL PENDING </option>
+     <option value="WORK NOT STARTED">WORK NOT STARTED</option>
+     <option value="">-</option>
+      </select>
+    </form></td>
+    <td><form id="form3" name="form3" method="post" action="">
+      <label for="ato"></label>
+      <select name="ato" id="ato">
+      <option value="ATA">ATA</option>
+      <option value="CEO">CEO</option>
+     <option value="ED">ED</option>
+     <option value="CAO">CAO</option>
+     <option value="AQC">AQC</option>
+     <option value="AM">AM</option>
+     <option value="SPC">SPC</option>
+     <option value="SAO">SAO</option>
+     <option value="SAF">SAF</option>
+     <option value="SAP">SAP</option>
+     <option value="CH">CH</option>
+     <option value="SAC">SAC</option>
+     <option value="EC">EC</option>
+     <option value="GMBD">GMBD</option>
+     <option value="FC">FC</option>
+     <option value="SFO">SFO</option>
+     <option value="FM">FM</option>
+     <option value="HRM">HRM</option>
+     <option value="SAB">SAB</option>
+     <option value="MH">MH</option>
+     <option value="PDO">PDO</option>
+     <option value="PM">PM</option>
+     <option value="PM-KELTRON">PM-KELTRON</option>
+     <option value="PM-CCEK">PM-CCEK</option>
+     <option value="PM-DB">PM-DB</option>
+     <option value="PM-DDUGKY">PM-DDUGKY</option>
+     <option value="SPM">SPM</option>
+     <option value="">-</option>
+     
+      </select>
+    </form></td>
+    <td class="ctr">&nbsp;<input name="eed" type="date" id="eed" /></td>
+    <td>
+      <button onclick="filterview()">Filter</button>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table id="customers" style="width:100%">
+  <tr style="text-align:justify">
+    <th>SL.NO</th>
+    <th>PROJECT NAME</th> 
+    <th>TASK</th>
+    <th>DESCRIPTION</th>
+    <th>STATUS</th> 
+    <th>DIVISION NAME</th>
+    <th>ASSIGNED TO</th>
+    <th>AGING</th>
+    <th>REMARKS</th> 
+    <th>EXPECTED START DATE</th>
+    <th>ACTUAL START DATE</th>
+    <th>EXPECTED END DATE</th> 
+    <th>ACTUAL END DATE</th>
+  </tr>
+  <tr>
+  
+ 								
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

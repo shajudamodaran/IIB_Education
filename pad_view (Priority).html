@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta meta name="viewport" content="width=device-width, user-scalable=no" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: "Roboto Condensed";
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+font-family:Calibri;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:13px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2; }
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:16px;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#customers_m {
+	font-family:Calibri;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers_m td, #customers_m th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers_m td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:13px;
+  word-wrap: break-word;
+}
+#customers_m tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers_m tr:hover {background-color: #ddd;}
+
+#customers_m th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:16px;
+  text-align:center;
+}
+#customers_l{
+	font-family:Calibri;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers_l td, #customers_lth {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers_l td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:13px;
+  word-wrap: break-word;
+}
+#customers_l tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers_l tr:hover {background-color: #ddd;}
+
+#customers_l th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:16px;
+  text-align:center;
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hroundcorner
+{
+ border-radius: 10px;
+  border: 2px solid #ff0000;
+  padding: 20px;
+  width: 310dp;
+  height: 100%;
+}
+.mroundcorner
+{
+ border-radius: 10px;
+  border: 2px solid   #00FF66;
+  padding: 20px;
+
+  height: 100%;
+}
+.lroundcorner
+{
+ border-radius: 10px;
+  border: 2px solid  #FFFF00;
+  padding: 20px;
+  height: 100%;
+}
+.divroundcorner
+{
+ border-radius: 10px;
+  border: 2px solid  #ffffff;
+  height: 50px;
+  vertical-align:middle;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+  }
+  input[type=submit] {
+  width: 100%px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+ 
+
+</style>
+
+<script src="myscripts.js"></script>
+
+
+
+
+</head>
+
+<body>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: center; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="248" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="12" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="83" style="text-align: center"><a href="pad_assign.html" style="text-decoration: none;">HOME</a></td>
+      <td width="126" style="text-align: center"><a href="pad_view (All).html" style="text-decoration: none;">VIEW WORK (All) </a></td>
+      <td width="157" style="text-align: center"><a href="pad_view (Priority).html" style="text-decoration: none;">VIEW WORK (Priority) </a><a href="viewforedit.html"  style="text-decoration: none;"></a></td>
+      <td width="146" bgcolor="#FFFFFF"><div align="center"><a href="viewforedit.html"  style="text-decoration: none;">EDIT WORK</a></div></td>
+      <td width="341" bgcolor="#FFFFFF"><div align="right"><img src="Skill _ NSDC Logo SMALL2.png" width="262" height="107" /></div></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+
+<div class="divroundcorner">
+ 
+ <select style="width:150px; margin-left:20px" onchange="myOnchange()" id="prodivsetter">
+  <option value="Project">Project</option>
+      <option value="Division">Division</option>
+	     <option value="All">All</option>
+		 </select>
+		 
+		 <select id="prodivselect" style="width:380px; margin-left:20px">
+		
+		 </select>
+		 
+		   <img class="loading" src="http://loadinggif.com/images/image-selection/3.gif" id="img-loading" style="visibility:;margin-left:20px; vertical-align:middle;">
+		
+		
+		 
+		 
+		  <select id="pcselect" style="width:150px; margin-left:20px">
+		   <option value="Completed">Completed</option>
+      <option value="Pending">Pending</option>
+	   <option value="All">All</option>
+		 </select>
+		 <input type="submit" value="Show" style="margin-left:20px;" onclick="showWorks()" id="sbmt_btn" />
+		 <img class="loading" src="http://loadinggif.com/images/image-selection/3.gif" id="img-loading_button" style="visibility:;margin-left:20px; vertical-align:middle;">
+</div>
+
+<div style="width:100%; margin-top:30px" >
+
+		<table id="" style="width:100%; table-layout:auto; font-family:"Roboto Condensed" " border="0">
+		  <tr style="text-align: center; vertical-align:top" >
+			<th width="33.3%" height="100%"  style="font-family:"Roboto Condensed"">
+			
+					<div style="" class="hroundcorner">
+					
+					<table width="100%" id="customers" style="width:100%; table-layout:auto;" onclick="highprioonclick();">
+					  <tr style="text-align:justify">
+						<th width="5%">HIGH PRIORITY WORKS</th>
+
+					  </tr>
+					  
+					  <tr>
+					  
+													
+					</table>
+					
+					</div>
+					
+			
+			
+			
+			
+			</th>
+			<th width="33.3%" height="100%"  style="font-family:"Roboto Condensed"">
+			
+					<div style="" class="mroundcorner">
+					<table width="100%" id="customers_m" style="width:100%; table-layout:auto;" onclick="mediumprioonclick();">
+					  <tr style="text-align:justify">
+						<th width="5%">MEDIUM PRIORITY WORKS</th>
+
+					  </tr>
+					  <tr>
+					  
+													
+					</table>
+					
+					</div>
+					
+			
+			
+			
+			
+			</th>
+			<th width="33.3%" height="100%"  style="font-family:"Roboto Condensed"">
+			
+					<div style="" class="lroundcorner">
+					<table width="100%" id="customers_l" style="width:100%; table-layout:auto;" onclick="lowprioonclick();">
+					  <tr style="text-align:justify">
+						<th width="5%">LOW PRIORITY WORKS</th>
+
+					  </tr>
+					  <tr>
+					  
+													
+					</table>
+					
+					</div>
+					
+			
+			
+			
+			
+			</th>
+			
+		  </tr>
+		</table>
+
+ </div>
+  
+ 								
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <base target="_top">
+     </head>
+ <script>
+
+
+function myFunction() 
+{
+
+  var x = document.getElementById("select2").value;;
+  if(x=="Other")
+  {
+  document.getElementById("textfield").style.visibility = "visible";
+  document.getElementById("textfield").placeholder = "if other please mention here";
+  }
+  else
+  {
+   document.getElementById("textfield").style.visibility = "hidden";
+  }
+  
+}
+
+function submitdata()
+{
+var orig_to="";
+var temp_wonumber=document.getElementById("textfield3").value;
+var temp_date=document.getElementById("datepicker1").value;
+var temp_type=document.getElementById("textfield2").value;
+var temp_desc=document.getElementById("textarea").value;
+var temp_project=document.getElementById("selectproject").value;
+var temp_from=document.getElementById("selectdiv").value;
+
+var temp_to=document.getElementById("select2").value;
+
+if(temp_to=="Sujan T")
+{
+var orig_to="Sujan T";
+}
+else if(temp_to=="Other")
+{
+var temp_to_to=document.getElementById("textfield").value;
+var orig_to=temp_to_to;
+}
+
+var temp_pdate=document.getElementById("pddate").value;
+
+
+
+
+
+                var script_url="https://script.google.com/macros/s/AKfycbx_Hhx2tXtWVAAomd6EG8sMkorM07OqBcj-fL8qZsmspp_BpvI/exec";
+				
+				var url = script_url+"?callback=ctrlq&a1="+temp_date+"&a2="+temp_type+"&a3="+temp_desc+"&a4="+temp_project+"&a5="+temp_from+"&a6="+orig_to+"&a7="+temp_pdate+"&a8="+temp_wonumber+"&action=insert";
+				alert("ok");
+							var request = jQuery.ajax({
+							  crossDomain: true,
+							  url: url ,
+							  method: "GET",
+							  dataType: "jsonp"
+						});
+
+
+
+}
+</script>
+
+<body>
+<table width="100%" border="0">
+  <tr>
+    <td height="72" colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="12%" height="40">&nbsp;</td>
+    <td width="22%"><div align="right">Date : </div></td>
+    <td width="26%"><input type="date" id="datepicker1" /></td>
+    <td width="40%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="38"></td>
+    <td><div align="right">Name of Division : </div></td>
+    <td><select id="selectdiv">
+	 <option value="PDD">PDD-SPC</option>
+      <option value="MIS">MIS-CAO</option>
+       <option value="LD">LD-LH</option>
+        <option value="BED">BED-BEM</option>
+         <option value="MMD">MMD-SAB</option>
+          <option value="PD">PD-PM</option>
+           <option value="NSDCPM">NSDC-PM</option>
+            <option value="PAD">PAD-SAP</option>
+             <option value="SAF">FAD-SAF</option>
+              <option value="AAD">AAD-SAO</option>
+               <option value="AM">AD-AM</option>
+                <option value="FCD">FCD-SFO</option>
+                 <option value="FEE">FEE-FC</option>
+                  <option value="FUND">FUND-FM</option>
+                   <option value="PCD-SPM">PCD-SPM</option>
+                    <option value="CEO-SAC">PCD-SAC</option>
+                     <option value="ACD">ACD-AQC</option>
+                      <option value="ED">ED-EC</option>
+                       <option value="CCD">CCD-CH</option>
+                        <option value="PM-DB">PM-DB</option>
+                         <option value="PM-KEL">PM-KELTRON</option>
+                          <option value="PM-CCEK">PM-CCEK</option>
+                           <option value="PM-STC">PM-STC</option>
+                            <option value="PM-DDU">PM-DDUGKY</option>
+                             <option value="RDT">RDT-RM</option> 
+                             <option value="SCD">SCD-SC</option>
+                              <option value="SAD">SAD-SAH</option>
+                               <option value="RR-RC">RR-RC</option>
+                                <option value="HRD">HRD-HRM</option>
+                                <option value="CCD">CDD-SCD</option>
+    </select>    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="41">&nbsp;</td>
+    <td><div align="right">Name of Project : </div></td>
+    <td> <select name="select" id="selectproject">
+      <option value="CCEK NSDT CAMPUS PROGRAM 2019-20">CCEK NSDT CAMPUS PROGRAM 2019-20</option>
+     <option value="CCEK DCA PROGRAM">CCEK DCA PROGRAM</option>
+     <option value="CCEK-CO-ORDINATION">CCEK-CO-ORDINATION</option>
+     <option value="IIB DIRECT BUSINESS">IIB DIRECT BUSINESS</option>
+     <option value="IIB STC BUSINESS">IIB STC BUSINESS</option>
+     <option value="KELTRON CAMPUS PROGRAM">KELTRON CAMPUS PROGRAM</option>
+     <option value="KELTRON CENTRE PROGRAM">KELTRON CENTRE PROGRAM</option>
+     <option value="KELTRON INTERNSHIP PROGRAM">KELTRON INTERNSHIP PROGRAM</option>
+     <option value="DDU-GKY">DDU-GKY</option>
+     <option value="SRC VSDT PROGRAM FOR JAIL INMATES">SRC VSDT PROGRAM FOR JAIL INMATES</option>
+     <option value="SRC 1000 PDHMC">SRC 1000 PDHMC</option>
+     <option value="DFLAT">DFLAT</option>
+     <option value="IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS">IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS</option>
+     <option value="RCF INTERNSHIP">RCF INTERNSHIP</option>
+     <option value="LEGRAND RPL PROGRAM">LEGRAND RPL PROGRAM</option>
+     <option value="SRC SHE-SMART">SRC SHE-SMART </option>
+     <option value="KAICO">KAICO</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2017">SRC NSDT CAMPUS PROGRAM 2017</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2018">SRC NSDT CAMPUS PROGRAM 2018</option>
+	<option value="GENERAL">GENERAL</option>
+      </select></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="41">&nbsp;</td>
+    <td><div align="right">To :</div></td>
+    <td><select id="select2" onchange="myFunction()">
+	 <option value="Sujan T">Sujan TVM</option>
+	  <option value="Other">Other...</option>
+    </select> <input type="text" id="textfield" style="visibility:hidden" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="46">&nbsp;</td>
+    <td><div align="right">Item Type :</div></td>
+    <td><input type="text" id="textfield2"  /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="145">&nbsp;</td>
+    <td><div align="right">Item Description :</div></td>
+    <td><textarea id="textarea" cols="50" rows="8"></textarea></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="54">&nbsp;</td>
+    <td><div align="right">Proposed Date of Delivery :</div></td>
+    <td><input id="pddate" type="date" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="58">&nbsp;</td>
+    <td><div align="right">Work Order Number :</div></td>
+    <td><input id="textfield3" type="text" maxlength="70" /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><button onclick="submitdata()">Submit Consignment Request</button></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<title>Untitled Document</title>
+<style type="text/css">
+
+@font-face {
+	font-family: 'RobotoCondensed Regular';
+	src: url('RobotoCondensed-Regular.ttf') format('truetype');
+}.search {
+	color: #369;
+	background: #369;
+	width: auto;
+}
+.searchhead {
+	text-align: center;
+}
+.ctr {
+	text-align: center;
+}
+.ctrr {
+	text-align: center;
+}
+.ctr {
+	text-align: center;
+}
+.cc {
+	text-align: center;
+}
+#form3 {
+
+}
+#form2 {
+	text-align: left;
+	left: auto;
+}
+#form1 #pro {
+	text-align: center;
+}
+#form3 #ato {
+	text-align: center;
+}
+.a70 {
+	text-align: left;
+}
+#customers {
+	font-size: 12px;
+}
+
+
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+
+
+.bg {
+	color: #D4FFFF;
+}
+</style> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+	function insert_value() 
+  {
+	
+    var Username=$("#uname").val();
+	var Password= $("#pword").val();
+	if(Username=="user" & Password=="user123")
+	{
+		
+		var designation=document.getElementById("dvsn").value;
+		localStorage.setItem("designation",designation);
+		alert(designation);
+		window.open("page1.html");
+		
+	}
+	else if(Username=="admin" & Password=="admin123")
+	{
+		window.open("pad_assign.html");
+	}
+	
+		
+		
+	else
+	{
+		alert("Enter Correct UserID and Password");
+	}
+	
+  }
+  
+	
+	</script>
+
+</head>
+
+<body>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="1338" height="117" border="0" style="height: inherit; text-align: right; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="259" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="30" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="139" style="text-align: center; font-family: Arial;"></td>
+      <td width="146"><a href="pad_view (All).html" style="text-decoration: none;"></a></td>
+      <td width="117"><a href="viewforedit.html"  style="text-decoration: none;"></a></td>
+      <td width="621" bgcolor="#FFFFFF"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+ <div>&nbsp;</div>
+  <div>&nbsp;</div>
+   <div>&nbsp;</div>
+&nbsp;
+&nbsp;
+&nbsp;
+
+<div align="center" class="bg" style="background: #CCC; position: relative; left: 25%; height: 300px; width: 600px; border-radius: 50px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); font-family: Calibri; color: #000; background-color: #CCCCCC;">
+ <table width="400px" height="343" border="0">
+ <tr>
+ <td></td>
+ <td width="259"></td>
+ </tr>
+ <tr>
+ <td></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td height="36"></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td height="15"></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td height="39" style="text-align: right"><span style="text-align: right">Select Division :</span></td>
+ <td><form id="form1" name="form1" method="post" action="">
+   <label for="dvsn"></label>
+   <select name="dvsn" size="1" id="dvsn" style="font-size:12px">
+    <option value="IIB MANAGEMENT" selected="selected">IIB MANAGEMENT</option>
+     <option value="CEO">DD-CEO</option>
+     <option value="CFO">DD-CFO</option>
+     <option value="ED">EDD-ED</option>
+     <option value="MIS">MIS-MH</option>
+     <option value="CAO">MIS-CAO</option>
+     <option value="LH">LD-LH</option>
+     <option value="BEMW">BED-BEMW</option>
+     <option value="AQC">ACD-AQC</option>
+     <option value="AM">AD-AM</option>
+     <option value="SPC">PDD-SPC</option>
+     <option value="SAF">FAD-SAF</option>
+     <option value="SAP">PAD-SAP</option>
+     <option value="PAO">PAD-PAO</option>
+     <option value="SAO">AAD-SAO</option>
+     <option value="CH">CDD-CH</option>
+     <option value="EC">ED-EC</option>
+     <option value="GMBD">BED-GMBD</option>
+     <option value="FC">FEE-FC</option>
+     <option value="SFO">FCD-SFO</option>
+     <option value="FM">FUND-FM</option>
+     <option value="PM">PD-PM</option>
+     <option value="SCD">CDD-SCD</option>
+     <option value="PM-KELTRON">PM-KELTRON</option>
+     <option value="PM-CCEK">PM-CCEK</option>
+     <option value="PM-DB">PM-DB</option>
+     <option value="PM-NSDC">PM-NSDC</option>
+     <option value="PM-DDUGKY">PM-DDUGKY</option>
+     <option value="PM-STC">PM-STC</option>
+     <option value="PM-JAIL">PM-JAIL</option>
+     <option value="SPM">PDC-SPM</option>
+     <option value="SAC">PDC-SAC</option>
+     <option value="RM">RDT-RM</option>
+     <option value="SC">SCD-SC</option>
+     <option value="SAH">SAD-SAH</option>
+     <option value="RC">RR-RC</option>
+      <option value="HRM">HRD-HRM</option>
+      <option value="SAB">MMD-SAB</option>
+</select>
+ </form></td>
+ </tr><tr>
+ <td height="33" style="text-align: right">Enter User ID :</td>
+ <td><form id="form2" name="form2" method="post" action="">
+   <label for="uname"></label>
+   <input type="text" name="uname" id="uname" />
+ </form></td>
+ </tr>
+ <tr>
+ <td width="121" height="32" style="text-align: right">Enter Password :</td>
+ <td><form id="form3" name="form3" method="post" action="">
+   <label for="pwd2"></label>
+   <input type="password" name="pword" id="pword" />
+ </form></td>
+ </tr>
+ <tr>
+ <td height="39"></td>
+ <td><form id="form4" name="form4" method="post" action="">
+   <Button onClick="insert_value()">Login</Button>
+ </form></td>
+ </tr>
+ <tr>
+ <td></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td></td>
+ <td></td>
+ </tr>
+ <tr>
+ <td height="23"></td>
+ <td>&nbsp;</td>
+ </tr>
+ </table>
+ 
+ 
+</div>
+</body>
+</html>

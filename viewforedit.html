@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<script >
+
+var flag="";
+var rowc=0;
+var rowcc=0;
+
+onload = function() 
+{
+		flag="Function Called";
+		
+		var script_url="https://script.google.com/macros/s/AKfycbxceKfNQuVEvf2smGJnPnjTL8bG8sCXOEDaSidoeRU0VK5ATPo/exec";
+		var url = script_url+"?action=read";
+		document.getElementById("loading").style.visibility = "visible";
+		document.getElementById("loading2").style.visibility = "visible";
+		document.getElementById("img-loading").style.visibility = "visible";
+		
+		
+		$.getJSON(url, function (json) 
+			{
+				flag="JSON Accessed";
+				var flagsl=1;
+				
+				var table = document.getElementById("myTableData");
+				var count=0;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						var C1=json.records[i].SL_NO;
+						var C2=json.records[i].PROJECT_NAME;
+						var C3=json.records[i].TASK;
+						var C4=json.records[i].DESCRIPTION;
+						var C5=json.records[i].STATUS;
+						var C6=json.records[i].DIVISION_NAME;
+						var C7=json.records[i].ASSIGNED_TO;
+						var C8=json.records[i].AGING;
+						var C9=json.records[i].REMARKS;
+						var C10=json.records[i].EXPECTED_START_DATE;
+						var C11=json.records[i].ACTUAL_START_DATE;
+						var C12=json.records[i].EXPECTED_END_DATE;
+						var C13=json.records[i].ACTUAL_END_DATE;
+						
+							
+									count=count+1;
+									tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									tabCell.innerHTML =flagsl;
+									flagsl++;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].PROJECT_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].PRIORITY;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].TASK;
+									tabCell = tr.insertCell(-1);
+
+									tabCell.innerHTML = json.records[i].DESCRIPTION;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].STATUS;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].DIVISION_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].ASSIGNED_TO;
+									tabCell = tr.insertCell(-1);
+									
+									var agingvalue="";
+									
+									var today0 = new Date();var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+mm+"/"+dd+"/"+yyyy+"";
+									
+									
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									 var dateMomentObject = moment(eedate0,"DD/MM/YYYY");
+								 var dateObject = dateMomentObject.toDate(); 
+									
+									var dateFirst = new Date(today1);
+        						 var dateSecond = new Date(dateObject);
+								 
+								  var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+								 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+									
+				
+								
+								 	
+ 									
+									  console.log(eedate0);
+									 
+								
+								 
+								 	
+								 var flagend=json.records[i].ACTUAL_END_DATE;	
+								
+											
+								if(flagend!=="NaN/NaN/NaN")
+								{
+									
+									tabCell.innerHTML ="Work Completed";
+								} 
+								else
+								{
+									if (diffDays=="0")
+										{  
+										agingvalue="Today Is the Last Date";
+											diffDays="";
+											
+										}
+									
+									else if(today0>dateObject) 
+										{
+											agingvalue="";
+										}
+									else
+										{
+											agingvalue=" -Days Remaining";
+										}
+									
+									if(eedate0=="NaN/NaN/NaN")
+										{
+											tabCell.innerHTML ="No Exp.End Date";
+										}
+									else
+										{
+											tabCell.innerHTML = diffDays+agingvalue;
+										}
+								}
+									
+									//tabCell.innerHTML = diffDays+agingvalue;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].REMARKS;
+									tabCell = tr.insertCell(-1);
+									
+									
+									var esd0=json.records[i].EXPECTED_START_DATE;
+									if(esd0=="NaN/NaN/NaN")
+									{
+										var ns="-----";
+										tabCell.innerHTML =ns;
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+	
+									tabCell.innerHTML =esd0;
+									tabCell = tr.insertCell(-1);
+									}
+									
+									var asd0=json.records[i].ACTUAL_START_DATE;
+									if(asd0=="NaN/NaN/NaN")
+									{
+										var ns="-----";
+										tabCell.innerHTML =ns;
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									
+									tabCell.innerHTML =asd0;
+									tabCell = tr.insertCell(-1);
+									}
+		
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									
+									
+									if(eedate0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="-----";
+									}
+									else
+									{
+									
+									tabCell.innerHTML = eedate0;
+									}
+									tabCell = tr.insertCell(-1);
+									
+									var aedate0=json.records[i].ACTUAL_END_DATE;
+									if(aedate0=="NaN/NaN/NaN")
+									{
+										var ns="-----";
+										tabCell.innerHTML =ns;
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									
+									tabCell.innerHTML = aedate0;
+									tabCell = tr.insertCell(-1);
+									
+									}
+									
+									var btn=document.createElement("INPUT");
+									btn.setAttribute("type","Button");
+									btn.setAttribute("onclick","PersonViewModel(this)");
+									btn.setAttribute("id","buttons"+rowcc+"");				
+									//btn.setAttribute("value",""+rowcc+"");
+									btn.setAttribute("value","Edit");
+									tabCell.appendChild(btn);
+									tabCell = tr.insertCell(-1);
+									
+									
+									var btn=document.createElement("INPUT");
+									btn.setAttribute("type","Button");
+									btn.setAttribute("onclick","DeleteWork(this)");
+									btn.setAttribute("id","buttons"+rowcc+"");				
+									btn.setAttribute("value",""+rowcc+"");
+									btn.setAttribute("value","Delete");
+									tabCell.appendChild(btn);
+									
+								}
+								
+						
+						stopspin();
+	    });
+		
+
+}
+function CountRows() 
+{
+	
+		 var totalRowCount = 0;
+        var rowCount = 0;
+        var table = document.getElementById("customers");
+        var rows = table.getElementsByTagName("tr")
+		for (var i = 0; i < rows.length; i++) {
+            totalRowCount++;
+            if (rows[i].getElementsByTagName("td").length > 0) {
+                rowCount++;
+            }
+        }
+        rowc=rowCount;
+}
+
+
+function PersonViewModel(x) 
+     {
+		 
+		 var rowIndex = $(x).closest('tr').index();
+		CountRows() ;
+		var k0=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		 console.log(k0);
+		 localStorage.setItem("k0",k0);
+		window.location.href = "editwork_new.html";	
+	
+	}
+
+
+function DeleteWork(x) 
+     {
+		 var rowIndex = $(x).closest('tr').index();
+		 var k1=document.getElementById("customers").rows[rowIndex].cells[3].innerHTML;
+		 console.log(k1);
+		 var r = confirm("Are you shure to delete?");
+if (r == true) {
+  var script_url = "https://script.google.com/macros/s/AKfycbz5exFEyep4M90Q_V1aAr9nFpreovXvgLSswJtMM4SUNJSw2uS7/exec";
+			var url = script_url+"?callback=ctrlq&task="+k1+"&action=insert";
+			var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+});
+			location.reload();
+} else {
+ 
+}
+		 
+		 	
+	
+	}
+
+
+
+
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+		document.getElementById("img-loading").style.visibility = "hidden";
+	}
+	 	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+<body>
+<div align="center" style="position:fixed;background:#000000; width:100%; height:100%; opacity:0;" id="loading2">
+<script>
+document.write(flag);
+</script>
+<div style=" position:fixed;top:48%; left:35%;" id="loading">
+
+	
+		 
+		</div>
+		
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: right; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="242" height="113"><div align="left"><img src="IIB-logo-small.png" width="242" height="65" /></div></td>
+      <td width="29" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="83" style="text-align: center"><a href="pad_assign.html" style="text-decoration: none;">HOME</a></td>
+      <td width="126" style="text-align: center"><a href="pad_view (All).html" style="text-decoration: none;">VIEW WORK (All) </a></td>
+      <td width="157" style="text-align: center"><a href="pad_view (Priority).html" style="text-decoration: none;">VIEW WORK (Priority) </a><a href="viewforedit.html"  style="text-decoration: none;"></a></td>
+      <td width="146" bgcolor="#FFFFFF"><div align="center"><a href="viewforedit.html"  style="text-decoration: none;">EDIT WORK</a></div></td>
+      <td width="480" bgcolor="#FFFFFF"><img src="Skill-_-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+
+<table width="100%" id="customers" style="width:100%;table-layout: auto;">
+  <tr style="text-align:justify;">
+    <th width="5%">SL.NO</th>
+    <th width="8%">PROJECT NAME</th>
+    <th width="4%">PRIORITY</th> 
+    <th width="4%">TASK</th>
+    <th width="8%">DESCRIPTION</th>
+    <th width="6%">STATUS</th> 
+    <th width="8%">DIVISION NAME</th>
+    <th width="8%">ASSIGNED TO</th>
+    <th width="5%">AGING</th>
+    <th width="7%">STATUS UPDATED BY DIVISION HEADS</th> 
+    <th width="10%">EXPECTED START DATE</th>
+    <th width="9%">ACTUAL START DATE</th>
+    <th width="10%">EXPECTED END DATE</th> 
+    <th width="12%">ACTUAL END DATE</th>
+    <th width="12%">UPDATE</th>
+    <th width="12%">DELETE</th>
+  </tr>
+  
+ 								
+</table>
+<img class="loading" src="http://loadinggif.com/images/image-selection/3.gif" id="img-loading" style="visibility:hidden; position:relative;left:48%; top:10px;">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

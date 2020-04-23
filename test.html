@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+</head>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+ 
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height:25px;
+  width:60px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+</style>
+<script>
+function send()
+{
+	<?php
+// Account details
+$apiKey = urlencode("vaYzxKA+b+g-SCpuC1DRoKqGjzaqN0kvjM65tnxVNP");
+// Message details
+$numbers = urlencode(‘919074810177’);
+$sender = urlencode(‘TXTLCL’);
+$message = rawurlencode(‘This is your message’);
+ 
+// Prepare data for POST request
+$data = ‘apikey=’ . $apiKey . ‘&numbers=’ . $numbers . “&sender=” . $sender . “&message=” . $message;
+// Send the GET request with cURL
+$ch = curl_init(‘https://api.textlocal.in/send/?’ . $data);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+curl_close($ch);
+// Process your response here
+echo $response;
+?>
+}
+
+
+</script>
+<body>
+<button onclick="send()">Click Me</button>
+<br/>
+<a href="whatsapp://send?text=Hello%2C%20World!">Send message to WhatsApp</a>  
+
+<br/>
+<a href="whatsapp://app">Open WhatsApp</a>
+
+<br/>
+<a href="whatsapp://whatsapp?text=Hello%20World"
+   data-store-android="https://play.google.com/store/apps/details?id=com.whatsapp"
+   data-store-ios="https://itunes.apple.com/app/id310633997">
+Say &ldquo;Hello World&rdquo; on WhatsApp!
+</a>
+
+<br/>
+
+<a href="intent://send/+919074810177#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end">de novo</a>
+
+<a href="https://api.whatsapp.com/send?phone=+919074810177&text=urlencodedtext">aie</a>
+
+<button style="background-color:#0C3"; class="button" >bUTTON</button>
+</body>
+</html>

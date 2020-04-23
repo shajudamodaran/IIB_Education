@@ -1,0 +1,884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+.ds {
+	font-size: 10px;
+	text-align: center;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+
+ onload=function loadvalues()
+  {
+	 
+	  var key_task=localStorage.getItem('k0');
+	 
+	  
+	  
+	  flag="Function Called";
+		
+		var script_url="https://script.google.com/macros/s/AKfycbxceKfNQuVEvf2smGJnPnjTL8bG8sCXOEDaSidoeRU0VK5ATPo/exec";
+		var url = script_url+"?action=read";
+		
+		$.getJSON(url, function (json) 
+			{
+				
+				var flagsl=1;
+				
+				//var table = document.getElementById("myTableData");
+				
+				var count=0;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						var C1=json.records[i].SL_NO;
+						var C2=json.records[i].PROJECT_NAME;
+						var C3=json.records[i].TASK;
+						var C4=json.records[i].DESCRIPTION;
+						var C5=json.records[i].STATUS;
+						var C6=json.records[i].DIVISION_NAME;
+						var C7=json.records[i].ASSIGNED_TO;
+						var C8=json.records[i].AGING;
+						var C9=json.records[i].REMARKS;
+						var C10=json.records[i].EXPECTED_START_DATE;
+						var C11=json.records[i].ACTUAL_START_DATE;
+						var C12=json.records[i].EXPECTED_END_DATE;
+						var C13=json.records[i].ACTUAL_END_DATE;
+						var C14=json.records[i].PRIORITY;
+						
+						
+						
+						
+						
+						
+						
+						if(C3==key_task)
+						{
+						   
+								var userdRoutes=document.getElementById("selectproject");
+								
+								//var option = document.createElement("option");
+								//option.text = C2;
+								//option.value = C2;
+								//option.selected = "selected";
+								//userdRoutes.add(option);
+								document.getElementById("selectproject").value=C2;
+								document.getElementById("priority_list").value=C14;
+								document.getElementById("status").value=C5;
+								document.getElementById("task").value=C3;
+								document.getElementById("description").value=C4;
+								document.getElementById("status").value=C5;
+								document.getElementById("divisionname").value=C6;
+								document.getElementById("designation").value=C7;
+								document.getElementById("remarks").value=C9;
+								
+								
+								
+								 var dateMomentObject = moment(C12,"DD/MM/YYYY");
+								 var dateObject = dateMomentObject.toDate(); 
+								  var date = new Date(dateObject);
+								 var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month2="";
+									if(month==1)
+									{
+										month2="01";
+									}
+									else if(month==2)
+									{
+										month2="02";
+									}
+									else if(month==3)
+									{
+										month2="03";
+									}
+									else if(month==4)
+									{
+										month2="04";
+									}
+									else if(month==5)
+									{
+										month2="05";
+									}
+									else if(month==6)
+									{
+										month2="06";
+									}
+									else if(month==7)
+									{
+										month2="7";
+									}
+									else if(month==8)
+									{
+										month2="08";
+									}
+									else if(month==9)
+									{
+										month2="09";
+									}
+									else
+									{
+										month2=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt2="01";
+									}
+									else if(dt==2)
+									{
+										dt2="02";
+									}
+									else if(dt==3)
+									{
+										dt2="03";
+									}
+									else if(dt==4)
+									{
+										dt2="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt2="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt2="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt2="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt2="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt2="09";
+									}
+									else
+									{
+										dt2=dt;
+									}
+									
+									var d1=""+year+"-"+month2+"-"+dt2+"";
+						
+								document.getElementById("eedate3").value=d1;
+								
+								
+								
+	                               var dateMomentObject = moment(C10,"DD/MM/YYYY");
+								 var dateObject = dateMomentObject.toDate(); 
+								  var date = new Date(dateObject);
+	   						        var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month2="";
+									if(month==1)
+									{
+										month2="01";
+									}
+									else if(month==2)
+									{
+										month2="02";
+									}
+									else if(month==3)
+									{
+										month2="03";
+									}
+									else if(month==4)
+									{
+										month2="04";
+									}
+									else if(month==5)
+									{
+										month2="05";
+									}
+									else if(month==6)
+									{
+										month2="06";
+									}
+									else if(month==7)
+									{
+										month2="7";
+									}
+									else if(month==8)
+									{
+										month2="08";
+									}
+									else if(month==9)
+									{
+										month2="09";
+									}
+									else
+									{
+										month2=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt2="01";
+									}
+									else if(dt==2)
+									{
+										dt2="02";
+									}
+									else if(dt==3)
+									{
+										dt2="03";
+									}
+									else if(dt==4)
+									{
+										dt2="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt2="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt2="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt2="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt2="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt2="09";
+									}
+									else
+									{
+										dt2=dt;
+									}
+									
+									var d1=""+year+"-"+month2+"-"+dt2+"";
+									
+	document.getElementById("esdate").value=""+year+"-"+month2+"-"+dt2+"";
+	
+	
+								 var dateMomentObject = moment(C11, "DD/MM/YYYY");
+								 var dateObject = dateMomentObject.toDate(); 
+								  var date = new Date(dateObject);
+									var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month2="";
+									if(month==1)
+									{
+										month2="01";
+									}
+									else if(month==2)
+									{
+										month2="02";
+									}
+									else if(month==3)
+									{
+										month2="03";
+									}
+									else if(month==4)
+									{
+										month2="04";
+									}
+									else if(month==5)
+									{
+										month2="05";
+									}
+									else if(month==6)
+									{
+										month2="06";
+									}
+									else if(month==7)
+									{
+										month2="7";
+									}
+									else if(month==8)
+									{
+										month2="08";
+									}
+									else if(month==9)
+									{
+										month2="09";
+									}
+									else
+									{
+										month2=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt2="01";
+									}
+									else if(dt==2)
+									{
+										dt2="02";
+									}
+									else if(dt==3)
+									{
+										dt2="03";
+									}
+									else if(dt==4)
+									{
+										dt2="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt2="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt2="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt2="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt2="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt2="09";
+									}
+									else
+									{
+										dt2=dt;
+									}
+									
+									var d2=""+year+"-"+month2+"-"+dt2+"";
+									console.log(d2);
+	
+	document.getElementById("asdate").value=d2;
+	
+	
+	var dateMomentObject = moment(C13, "DD/MM/YYYY");
+								 var dateObject = dateMomentObject.toDate(); 
+								  var date = new Date(dateObject);
+									var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month2="";
+									if(month==1)
+									{
+										month2="01";
+									}
+									else if(month==2)
+									{
+										month2="02";
+									}
+									else if(month==3)
+									{
+										month2="03";
+									}
+									else if(month==4)
+									{
+										month2="04";
+									}
+									else if(month==5)
+									{
+										month2="05";
+									}
+									else if(month==6)
+									{
+										month2="06";
+									}
+									else if(month==7)
+									{
+										month2="7";
+									}
+									else if(month==8)
+									{
+										month2="08";
+									}
+									else if(month==9)
+									{
+										month2="09";
+									}
+									else
+									{
+										month2=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt2="01";
+									}
+									else if(dt==2)
+									{
+										dt2="02";
+									}
+									else if(dt==3)
+									{
+										dt2="03";
+									}
+									else if(dt==4)
+									{
+										dt2="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt2="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt2="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt2="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt2="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt2="09";
+									}
+									else
+									{
+										dt2=dt;
+									}
+									
+									var d2=""+year+"-"+month2+"-"+dt2+"";
+									console.log(d2);
+	
+	document.getElementById("aedate3").value=d2;
+
+								
+								
+								
+								
+								
+								
+						}
+						else
+						{
+						}
+						
+							
+								
+					}
+	    });
+		
+	 
+	 
+	 
+	 
+	 
+  }
+  
+   function updatevalue()
+  {
+	  //var key=localStorage.getItem('k1');
+	  var a1=document.getElementById("selectproject").value;
+	var a2=document.getElementById("task").value;
+	
+	var a3=document.getElementById("description").value;
+	
+	var a4=document.getElementById("status").value;
+	
+	var a5=document.getElementById("divisionname").value;
+	var a6=document.getElementById("designation").value;
+	var a7=document.getElementById("remarks").value;
+	
+	var date1=document.getElementById("esdate").value;
+	var datees = new Date(date1);			
+				var year = datees.getFullYear();
+				var month = datees.getMonth()+1;
+				var dt = datees.getDate();
+				var asd1final=""+dt+"/"+month+"/"+year+" ";
+	var a8=asd1final;
+	
+	
+	
+	var date2=document.getElementById("eedate3").value;
+	var dateee= new Date(date2);
+									
+				var year = dateee.getFullYear();
+				var month = dateee.getMonth()+1;
+				var dt = dateee.getDate();
+				var asd22final=""+dt+"/"+month+"/"+year+" ";
+	var a10=asd22final;
+	
+	
+	
+	
+	var date3=document.getElementById("asdate").value;
+	
+	var dateas= new Date(date3);
+									
+				var year = dateas.getFullYear();
+				var month = dateas.getMonth()+1;
+				var dt = dateas.getDate();
+				var asd222final=""+dt+"/"+month+"/"+year+" ";
+	var a9=asd222final;
+	
+	
+					
+	
+	var date4=document.getElementById("aedate3").value;
+	var dateae= new Date(date4);
+									
+				var year = dateae.getFullYear();
+				var month = dateae.getMonth()+1;
+				var dt = dateae.getDate();
+				var asd2final=""+dt+"/"+month+"/"+year+" ";
+	var a11=asd2final;
+	
+	var a12=document.getElementById("priority_list").value;
+	
+	if(document.getElementById("inform_cb").checked == true)
+	{
+	var script_url2="https://script.google.com/macros/s/AKfycbxCgn1p0SbhbHkMwEfbcXKZuNHvkJsIGfG-bCEO2XRyTauw9zuq/exec";
+	var url = script_url2+"?callback=ctrlq&task="+a2+"&newtat="+a10+"&a11="+a6+"&action=insert";
+	alert(asd22final)
+	
+	var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+	  
+    });
+	}
+	
+	
+	
+	var script_url="https://script.google.com/macros/s/AKfycbxd8aVWGynQoNjRGmFFaNrV8LQtmMuKPoAju2mLF0sPEe2aPSQ/exec";
+	var url = script_url+"?callback=ctrlq&key="+a2+"&a1="+a1+"&a2="+a2+"&a3="+a3+"&a4="+a4+"&a5="+a5+"&a6="+a6+"&a7="+a7+"&a8="+a8+"&a9="+a9+"&a10="+a10+"&a11="+a11+"&prio="+a12+"&action=edit";
+	
+	var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+	  
+    });
+	
+	alert("updated")
+	  
+  }
+
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="1338" height="117" border="0" style="height: inherit; text-align: center; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="259" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="30" style="text-align: center; font-family: Arial;">&nbsp;</td>
+     <td width="83" style="text-align: center"><a href="pad_assign.html" style="text-decoration: none;">HOME</a></td>
+      <td width="126" style="text-align: center"><a href="pad_view (All).html" style="text-decoration: none;">VIEW WORK (All) </a></td>
+      <td width="157" style="text-align: center"><a href="pad_view (Priority).html" style="text-decoration: none;">VIEW WORK (Priority) </a><a href="viewforedit.html"  style="text-decoration: none;"></a></td>
+      <td width="146" bgcolor="#FFFFFF"><div align="center"><a href="viewforedit.html"  style="text-decoration: none;">EDIT WORK</a></div></td>
+      <td width="621" bgcolor="#FFFFFF"><div align="right"><img src="Skill-_-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></div></td>
+    </tr>
+  </table>
+</div>
+<table width="1338" height="492" border="0">
+  <tr>
+    <td width="196">&nbsp;</td>
+    <td width="346" class="ds">&nbsp;</td>
+    <td width="147">&nbsp;</td>
+    <td width="244">&nbsp;</td>
+    <td width="182">&nbsp;</td>
+    <td width="187">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3">PROJECT NAME :</td>
+    <td><form id="form1" name="form1" method="post" action="">
+      <select name="select" id="selectproject">
+      <option value="CCEK NSDT CAMPUS PROGRAM 2020-21">CCEK NSDT CAMPUS PROGRAM 2020-21</option>
+      <option value="CCEK NSDT CAMPUS PROGRAM 2019-20">CCEK NSDT CAMPUS PROGRAM 2019-20</option>
+     <option value="CCEK DCA PROGRAM 2019-20">CCEK DCA PROGRAM 2019-20</option>
+     <option value="CCEK-CO-ORDINATION 2019-20">CCEK-CO-ORDINATION 2019-20</option>
+     <option value="IIB DIRECT BUSINESS">IIB DIRECT BUSINESS</option>
+     <option value="IIB STC BUSINESS">IIB STC BUSINESS</option>
+     <option value="KELTRON CAMPUS PROGRAM 2019-20">KELTRON CAMPUS PROGRAM 2019-20</option>
+     <option value="KELTRON CENTRE PROGRAM 2019-20">KELTRON CENTRE PROGRAM 2019-20</option>
+     <option value="KELTRON INTERNSHIP PROGRAM 2019-20">KELTRON INTERNSHIP PROGRAM 2019-20</option>
+     <option value="DDU-GKY">DDU-GKY</option>
+     <option value="SRC VSDT PROGRAM FOR JAIL INMATES">SRC VSDT PROGRAM FOR JAIL INMATES</option>
+     <option value="SRC 1000 PDHMC">SRC 1000 PDHMC</option>
+     <option value="DFLAT">DFLAT</option>
+     <option value="IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS">IIB SC GRAPHICS DESIGNING FOR 100 SC STUDENTS</option>
+     <option value="RCF INTERNSHIP">RCF INTERNSHIP</option>
+     <option value="LEGRAND RPL PROGRAM">LEGRAND RPL PROGRAM</option>
+     <option value="SRC SHE-SMART">SRC SHE-SMART </option>
+     <option value="KAICO">KAICO</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2017">SRC NSDT CAMPUS PROGRAM 2017</option>
+     <option value="SRC NSDT CAMPUS PROGRAM 2018">SRC NSDT CAMPUS PROGRAM 2018</option>
+	<option value="GENERAL">GENERAL</option>
+      </select>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="73" class="f3">PRIORITY: </td>
+    <td><label for="priority_list"></label>
+      <select name="priority_list" id="priority_list">
+        <option value="High Priority">HIGH PRIORITY</option>
+        <option value="Medium Priority">MEDIUM PRIORITY</option>
+        <option value="Low Priority">LOW PRIORITY</option>
+    </select></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="73" class="f3">TASK :</td>
+    <td><form id="form2" name="form2" method="post" action="">
+      <textarea name="textarea" id="task" cols="45" rows="3"></textarea>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="68" class="f3">DESCRIPTION :</td>
+    <td><form id="form3" name="form3" method="post" action="">
+      <textarea name="textarea2" id="description" cols="45" rows="3"></textarea>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="33" class="f3">STATUS :</td>
+    <td><form id="form4" name="form4" method="post" action="">
+      <select name="select2" id="status">
+      <option value="Work Started">WORK STARTED</option>
+     <option value="Work Progressing">WORK PROGRESSING</option>
+     <option value="Work Postponed">WORK POSTPONED</option>
+     <option value="Work Finished">WORK FINISHED</option>
+     <option value="Approval Pending">APPROVAL PENDING </option>
+     <option value="Work Not Started">WORK NOT STARTED</option>
+      </select>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3">DIVISION NAME :</td>
+    <td colspan="3"><form id="form5" name="form5" method="post" action="">
+      <select name="select3" id="divisionname">
+        <option value="ACADEMIC DIVISION" selected="selected">ACADEMIC DIVISION</option>
+        <option value="CEO">ACCOUNTS DIVISION</option>
+        <option value="ATA DIVISION">ATA DIVISION</option>
+        <option value="ACCOUNTS AUDIT DIVISION">ACCOUNTS AUDIT DIVISION</option>
+        <option value="FINANCE AUDIT DIVISION">FINANCE AUDIT DIVISION</option>
+        <option value="PROCESS AUDIT DIVISION">PROCESS AUDIT DIVISION</option>
+        <option value="CALL CENTRE DIVISION">CALL CENTRE DIVISION</option>
+        <option value="CONTENT  DEVELOPMENT DIVISION">CONTENT  DEVELOPMENT DIVISION</option>
+        <option value="EXAM DIVISION">EXAM DIVISION</option>
+        <option value="EXPANSION DIVISION">EXPANSION DIVISION</option>
+        <option value="FEE  COLLECTION DIVISION">FEE  COLLECTION DIVISION</option>
+        <option value="FINANCE CO-ORDINATION DIVISION">FINANCE CO-ORDINATION DIVISION</option>
+        <option value="FUND COLLECTION DIVISION">FUND COLLECTION DIVISION</option>
+        <option value="HR DIVISION">HR DIVISION </option>
+        <option value="LEGAL DIVISION">LEGAL DIVISION</option>
+        <option value="MARKETING & MOBILISATION DIVISION">MARKETING & MOBILISATION DIVISION</option>
+        <option value="MIS DIVISION">MIS DIVISION</option>
+        <option value="PROJECT DEVELOPMENT DIVISION">PROJECT DEVELOPMENT DIVISION</option>
+        <option value="PLACEMENT DIVISION">PLACEMENT DIVISION</option>
+        <option value="PROJECT EXECUTION DIVISION">PROJECT EXECUTION DIVISION</option>
+        <option value="PROJECT CO-ORDINATION DIVISION">PROJECT CO-ORDINATION DIVISION</option>
+        <option value="RandR DIVISION">R&R DIVISION</option>
+        <option value="RDT DIVISION">RDT DIVISION</option>
+        <option value="STATE CO-ORDINATION DIVISIONK">STATE CO-ORDINATION DIVISION</option>
+        <option value="SYSTEM ADMIN DIVISION">SYSTEM ADMIN DIVISION</option>
+        </select>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" class="f3">ASSIGNED TO :</td>
+    <td><form id="form6" name="form6" method="post" action="">
+      <select name="select4" id="designation">
+       <option value="IIB MANAGEMENT" selected="selected">IIB MANAGEMENT</option>
+     <option value="CEO">DD-CEO</option>
+     <option value="CFO">DD-CFO</option>
+     <option value="ED">EDD-ED</option>
+     <option value="MIS">MIS-MH</option>
+     <option value="CAO">MIS-CAO</option>
+     <option value="LH">LD-LH</option>
+     <option value="BEMW">BED-BEMW</option>
+     <option value="AQC">ACD-AQC</option>
+     <option value="AM">AD-AM</option>
+     <option value="SPC">PDD-SPC</option>
+     <option value="SAF">FAD-SAF</option>
+     <option value="SAP">PAD-SAP</option>
+     <option value="PAO">PAD-PAO</option>
+     <option value="SAO">AAD-SAO</option>
+     <option value="CH">CDD-CH</option>
+     <option value="EC">ED-EC</option>
+     <option value="GMBD">BED-GMBD</option>
+     <option value="FC">FEE-FC</option>
+     <option value="SFO">FCD-SFO</option>
+     <option value="FM">FUND-FM</option>
+     <option value="PM">PD-PM</option>
+     <option value="SCD">CDD-SCD</option>
+     <option value="PM-KELTRON">PM-KELTRON</option>
+     <option value="PM-CCEK">PM-CCEK</option>
+     <option value="PM-DB">PM-DB</option>
+     <option value="PM-NSDC">PM-NSDC</option>
+     <option value="PM-DDUGKY">PM-DDUGKY</option>
+     <option value="PM-STC">PM-STC</option>
+     <option value="PM-JAIL">PM-JAIL</option>
+     <option value="SPM">PDC-SPM</option>
+     <option value="SPM">PDC-SAC</option>
+     <option value="RM">RDT-RM</option>
+     <option value="SC">SCD-SC</option>
+     <option value="SAH">SAD-SAH</option>
+     <option value="RC">RR-RC</option>
+      <option value="HRM">HRD-HRM</option>
+      <option value="SAB">MMDSAB</option>
+        </select>
+    </form></td>
+    <td height="30" class="f3">&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="49" class="f3">REMARKS : </td>
+    <td><form id="form7" name="form7" method="post" action="">
+      <label for="remarks"></label>
+      <textarea name="remarks" id="remarks" cols="45" rows="2"></textarea>
+    </form></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3">EXPECTED START DATE :</td>
+    <td class="a70"><input type="date" class="a70" id="esdate" /></td>
+    <td class="f3">ACTUAL  START DATE :</td>
+    <td class="a70"><input type="date" class="a70" id="asdate" /></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="f3" id="eedate">EXPECTED END DATE :</td>
+    <td><span class="a70">
+      <input name="eedate" type="date" class="a70" id="eedate3"  />
+    </span>
+    <td class="f3" id="eedate">ACTUAL END DATE :</td>
+    <td><span class="a70">
+      <input type="date" class="a70" id="aedate3" />
+    </span></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td width="1">&nbsp;</td>
+    <td width="1">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="64">&nbsp;</td>
+    <td class="NEW"><button onclick="updatevalue()">Update</button></td>
+    <td colspan="2"><input type="checkbox" name="inform_cb" id="inform_cb" />
+    <label for="inform_cb" class="asd">Also inform the Division Head</label></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

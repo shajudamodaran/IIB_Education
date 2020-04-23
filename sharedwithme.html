@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>IIB WorkBench</title>
+<meta meta name="viewport" content="width=device-width, user-scalable=no" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align:center;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+</style>
+
+<script >
+
+
+
+onload = function() 
+{
+		var desig=localStorage.getItem("designation");
+		var script_url="https://script.google.com/macros/s/AKfycbxceKfNQuVEvf2smGJnPnjTL8bG8sCXOEDaSidoeRU0VK5ATPo/exec";
+		var url = script_url+"?action=read";
+		document.getElementById("loading").style.visibility = "visible";
+		document.getElementById("loading2").style.visibility = "visible";
+		$.getJSON(url, function (json) 
+			{
+				
+				var count=0;
+				var slflag=1;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						
+						var C2=json.records[i].PROJECT_NAME;
+						var C3=json.records[i].TASK;
+						var C4=json.records[i].DESCRIPTION;
+						var C5=json.records[i].STATUS;
+						var C6=json.records[i].DIVISION_NAME;
+						var C7=json.records[i].ASSIGNED_TO;
+						var C8=json.records[i].AGING;
+						var C9=json.records[i].REMARKS;
+						var C10=json.records[i].EXPECTED_START_DATE;
+						var C11=json.records[i].ACTUAL_START_DATE;
+						var C12=json.records[i].EXPECTED_END_DATE;
+						var C13=json.records[i].ACTUAL_END_DATE;
+						var C14=json.records[i].Shared_with;
+						
+							if(C14==desig)
+								{
+									count=count+1;
+									tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									
+									tabCell.innerHTML = slflag;
+									slflag++;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].PROJECT_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].TASK;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].DESCRIPTION;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].STATUS;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].DIVISION_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].ASSIGNED_TO;
+									tabCell = tr.insertCell(-1);
+									
+									var agingvalue="";
+									
+									var today0 = new Date();
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+mm+"/"+dd+"/"+yyyy+"";
+									
+									
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									
+									var dateOne = new Date(yyyy, mm, dd); //Year, Month, Date  
+      							    var dateTwo = new Date(year, month, dt);
+											
+									var dateFirst = new Date(today1);
+        						 var dateSecond = new Date(eedatefinal);
+								  var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+								 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));		
+											
+																
+									if (dateOne > dateTwo) 
+									{  
+										agingvalue="";
+									}
+									
+									else if(diffDays=="0")
+									{
+										agingvalue="Today Is the Last Date";
+										diffDays="";
+									}
+									else
+									{
+										agingvalue=" -Days Remaining";
+									}
+									
+									 
+									
+									
+									
+								
+									
+									tabCell.innerHTML = diffDays+agingvalue;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].REMARKS;
+									tabCell = tr.insertCell(-1);
+									
+									
+									var esd0=json.records[i].EXPECTED_START_DATE;
+									if(esd0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="Not Defined";
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									var esd1=date = new Date(esd0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									asdfinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML =asdfinal;
+									tabCell = tr.insertCell(-1);
+									}
+									
+									var asd0=json.records[i].ACTUAL_START_DATE;
+									if(asd0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="Not Started";
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									var asd1=date = new Date(asd0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									asdfinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML =asdfinal;
+									tabCell = tr.insertCell(-1);
+									}
+		
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML = eedatefinal;
+									tabCell = tr.insertCell(-1);
+									
+									var aedate0=json.records[i].ACTUAL_END_DATE;
+									if(aedate0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="Not Completed";
+									
+									}
+									else
+									{
+									var aedate1=date = new Date(aedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									aedatefinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML = aedatefinal;
+									}
+									
+								}
+						}
+						stopspin();
+	    });
+		
+
+}
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+	}	
+
+
+
+</script>
+
+
+
+
+
+
+
+<title>Untitled Document</title>
+</head>
+
+<body>
+<body>
+<body>
+<div align="center" style="position:fixed;background:#000000; width:99%; height:98%; opacity:0.5;" id="loading2">
+shaju
+<div class="loader2" style=" position:fixed;top:35%; left:44%;" id="loading"></div>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: right; font-family: 'Roboto Condensed'; font-size: 14px;">
+    <tr>
+      <td width="259" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="105" style="text-align: center; font-family: 'Roboto Condensed';"><a href="page1.html" style="text-decoration: none;">HOME</a></td>
+      <td width="124" style="text-align: center; font-family: 'Roboto Condensed';"></td>
+      <td width="86"><a href="pad_view (All).html" style="text-decoration: none;"></a></td>
+      <td width="117"><a href="viewforedit.html"  style="text-decoration: none;"></a></td>
+      <td width="621" bgcolor="#FFFFFF"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+  
+<table id="customers" width="100%">
+  <tr style="text-align:justify">
+    <th>SL.NO</th>
+    <th>PROJECT NAME</th> 
+    <th>TASK</th>
+    <th>DESCRIPTION</th>
+    <th>STATUS</th> 
+    <th>DIVISION NAME</th>
+    <th>ASSIGNED TO</th>
+    <th>AGING</th>
+    <th>STATUS UPDATED BY DIVISION HEADS</th> 
+    <th>EXPECTED START DATE</th>
+    <th>ACTUAL START DATE</th>
+    <th>EXPECTED END DATE</th> 
+    <th>ACTUAL END DATE</th>
+  </tr>
+  <tr>
+  
+ 								
+</table>
+</body>
+</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+</html>

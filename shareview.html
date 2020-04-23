@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.button {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #F00e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 20px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+<script>
+
+onload=function onload_fun()
+{
+	document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+		alert("ok");
+		getvalues()
+}
+
+function share()
+{
+	alert("Code Works");
+	 getvalues();
+	 
+	  var a1= document.getElementById("task_v").value;
+	   var a2=document.getElementById("shareto").value;
+	   
+	   var script_url2="https://script.google.com/macros/s/AKfycbyL8zzmQfl1jWDJ9Oddca5Q6j_3XtnXrUj3gOzzxigqKst3SpI/exec";
+	var url = script_url2+"?callback=ctrlq&a1="+a1+"&a2="+a2+"&action=edit";
+	alert("shareto "+a2+"");
+	
+	var request = jQuery.ajax({
+      crossDomain: true,
+      url: url ,
+      method: "GET",
+      dataType: "jsonp"
+	  
+    });
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+}
+ function getvalues()
+  {
+	  var k0=localStorage.getItem('k0');
+	   var k1=localStorage.getItem('k1');
+	  var k2=localStorage.getItem('k2');
+	  var k3=localStorage.getItem('k3');
+	  var k4=localStorage.getItem('k4');
+	  var k5=localStorage.getItem('k5');
+	  var k6=localStorage.getItem('k6');
+	  var k7=localStorage.getItem('k7');
+	  var k8=localStorage.getItem('k8');
+	  var k9=localStorage.getItem('k9');
+	  var k10=localStorage.getItem('k10');
+	  var actualended=localStorage.getItem('actualend');
+	  
+	  
+	  
+	   
+    document.getElementById("task_v").value=k1;
+	
+
+	
+	document.getElementById("assignedto_v").value=k5;
+
+	
+	
+	                          
+	
+									var date= new Date(k10);
+	               					var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var month3="";
+									if(month==1)
+									{
+										month3="01";
+									}
+									else if(month==2)
+									{
+										month3="02";
+									}
+									else if(month==3)
+									{
+										month3="03";
+									}
+									else if(month==4)
+									{
+										month3="04";
+									}
+									else if(month==5)
+									{
+										month3="05";
+									}
+									else if(month==6)
+									{
+										month3="06";
+									}
+									else if(month==7)
+									{
+										month3="7";
+									}
+									else if(month==8)
+									{
+										month3="08";
+									}
+									else if(month==9)
+									{
+										month3="09";
+									}
+									else
+									{
+										month3=month;
+									}
+									
+									
+									
+									var dt = date.getDate();
+									var dt2="";
+									if(dt==1)
+									{
+										dt3="01";
+									}
+									else if(dt==2)
+									{
+										dt3="02";
+									}
+									else if(dt==3)
+									{
+										dt3="03";
+									}
+									else if(dt==4)
+									{
+										dt3="04";
+									}
+									
+									else if(dt==5)
+									{
+										dt3="05";
+									}
+									
+									else if(dt==6)
+									{
+										dt3="06";
+									}
+									
+									else if(dt==7)
+									{
+										dt3="07";
+									}
+									
+									else if(dt==8)
+									{
+										dt3="08";
+									}
+									
+									else if(dt==9)
+									{
+										dt3="09";
+									}
+									else
+									{
+										dt3=dt;
+									}
+									
+									var d3=""+year+"-"+month3+"-"+dt3+"";
+	
+	document.getElementById("eedate_v").value=d3;
+
+	
+
+	  
+  }
+ 
+</script>
+
+
+
+
+
+</head>
+
+<body>
+<div align="center" style="position:fixed;background:#000000; width:99%; height:98%; opacity:0.5;" id="loading2">
+
+<div class="loader2" style=" position:fixed;top:35%; left:44%;" id="loading"></div>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: center; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="248" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="12" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="130" style="text-align: center; font-family: Arial;"><a href="page1.html">Home</a></td>
+      <td width="115">&nbsp;</td>
+      <td width="99">&nbsp;</td>
+      <td width="140" bgcolor="#FFFFFF">&nbsp;</td>
+      <td width="341" bgcolor="#FFFFFF"><div align="right"><img  src="Skill-_-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></div></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;</div>
+
+
+<table width="100%" height="320" border="0">
+  <tr>
+    <td width="227" height="71" class="right">Task :</td>
+    <td width="688"><label for="task_v"></label>
+    <textarea name="task_v" cols="50" rows="5" readonly="readonly" id="task_v"></textarea></td>
+  </tr>
+  <tr>
+    <td height="57" class="right">Assigned To :</td>
+    <td><input name="assignedto_v" type="text" id="assignedto_v" readonly="readonly" /></td>
+  </tr>
+  <tr>
+    <td height="57" class="right">Expected End Date :</td>
+    <td><input name="eedate_v" type="text" id="eedate_v" readonly="readonly" /></td>
+  </tr>
+  <tr>
+    <td height="60" class="right">Share With (View Only) :</td>
+    <td><label for="shareto"></label>
+      <select name="shareto" id="shareto">
+        <option value="IIB MANAGEMENT" selected="selected">IIB MANAGEMENT</option>
+     <option value="CEO">DD-CEO</option>
+     <option value="CFO">DD-CFO</option>
+     <option value="ED">EDD-ED</option>
+     <option value="MIS">MIS-MH</option>
+     <option value="CAO">MIS-CAO</option>
+     <option value="LH">LD-LH</option>
+     <option value="BEMW">BED-BEMW</option>
+     <option value="AQC">ACD-AQC</option>
+     <option value="AM">AD-AM</option>
+     <option value="SPC">PDD-SPC</option>
+     <option value="SAF">FAD-SAF</option>
+     <option value="SAP">PAD-SAP</option>
+     <option value="PAO">PAD-PAO</option>
+     <option value="SAO">AAD-SAO</option>
+     <option value="CH">CDD-CH</option>
+     <option value="EC">ED-EC</option>
+     <option value="GMBD">BED-GMBD</option>
+     <option value="FC">FEE-FC</option>
+     <option value="SFO">FCD-SFO</option>
+     <option value="FM">FUND-FM</option>
+     <option value="PM">PD-PM</option>
+     <option value="SCD">CDD-SCD</option>
+     <option value="PM-KELTRON">PM-KELTRON</option>
+     <option value="PM-CCEK">PM-CCEK</option>
+     <option value="PM-DB">PM-DB</option>
+     <option value="PM-NSDC">PM-NSDC</option>
+     <option value="PM-DDUGKY">PM-DDUGKY</option>
+     <option value="PM-STC">PM-STC</option>
+     <option value="PM-JAIL">PM-JAIL</option>
+     <option value="SPM">PDC-SPM</option>
+     <option value="SPM">PDC-SAC</option>
+     <option value="RM">RDT-RM</option>
+     <option value="SC">SCD-SC</option>
+     <option value="SAH">SAD-SAH</option>
+     <option value="RC">RR-RC</option>
+      <option value="HRM">HRD-HRM</option>
+      <option value="SAB">MMDSAB</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><button onclick="share()">Share</button></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

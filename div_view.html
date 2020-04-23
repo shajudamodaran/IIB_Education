@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<title>IIB WorkBench</title>
+<link href="RobotoCondensed_Regular/stylesheet.css" rel="stylesheet" type="text/css" />
+<style>
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 6px -6px  #999999;
+	   -moz-box-shadow: 0 8px 6px -6px #999999;
+	        box-shadow: 0 8px 6px -6px #999999;
+}
+.c1 {
+	text-align: right;
+}
+.t1 {
+	height: auto;
+	width: auto;
+}
+.f2 {
+	font-size: 12px;
+}
+.f2 {
+	font-size: 10px;
+}
+.f3 {
+	text-align: right;
+}
+.f3 {
+	font-size: 10px;
+}
+.f3 {
+	font-size: 11px;
+}
+.f3 {
+	font-family: Calibri;
+}
+.NEW {
+	text-align: right;
+}
+
+#customers {
+	font-family: Arial;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size:11px;
+  word-wrap: break-word;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  text-align:center;
+}
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid blue;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+@-webkit-keyframes spin 
+{
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+  @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  visibility:hidden;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<script >
+
+var flag="";
+
+onload = function() 
+{
+		flag="Function Called";
+		var slno=1;
+		
+		var script_url="https://script.google.com/macros/s/AKfycbxceKfNQuVEvf2smGJnPnjTL8bG8sCXOEDaSidoeRU0VK5ATPo/exec";
+		var url = script_url+"?action=read";
+		document.getElementById("loading").style.visibility = "visible";
+		document.getElementById("loading2").style.visibility = "visible";
+		
+		$.getJSON(url, function (json) 
+			{
+				flag="JSON Accessed";
+				
+				var table = document.getElementById("myTableData");
+				var count=0;
+				for (var i = 0; i < json.records.length; i++) 
+					{
+						var C1=json.records[i].SL_NO;
+						var C2=json.records[i].PROJECT_NAME;
+						var C3=json.records[i].TASK;
+						var C4=json.records[i].DESCRIPTION;
+						var C5=json.records[i].STATUS;
+						var C6=json.records[i].DIVISION_NAME;
+						var C7=json.records[i].ASSIGNED_TO;
+						var C8=json.records[i].AGING;
+						var C9=json.records[i].REMARKS;
+						var C10=json.records[i].EXPECTED_START_DATE;
+						var C11=json.records[i].ACTUAL_START_DATE;
+						var C12=json.records[i].EXPECTED_END_DATE;
+						var C13=json.records[i].ACTUAL_END_DATE;
+						flag="Data fetched";
+						
+							
+									count=count+1;
+									tr = customers.insertRow(-1);
+									var tabCell = tr.insertCell(-1);
+									tabCell.innerHTML =slno;
+									slno=slno+1;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].PROJECT_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].TASK;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].DESCRIPTION;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].STATUS;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].DIVISION_NAME;
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].ASSIGNED_TO;
+									tabCell = tr.insertCell(-1);
+									
+									var agingvalue="";
+									
+									var today0 = new Date();
+									var dd = String(today0.getDate()).padStart(2, '0');
+									var mm = String(today0.getMonth() + 1).padStart(2, '0'); //January is 0!
+									var yyyy = today0.getFullYear();
+									var today1=""+mm+"/"+dd+"/"+yyyy+"";
+									
+									
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									
+									var dateOne = new Date(yyyy, mm, dd); //Year, Month, Date  
+      							    var dateTwo = new Date(year, month, dt);
+											
+									var dateFirst = new Date(today1);
+        						 var dateSecond = new Date(eedatefinal);
+								  var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+								 var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));		
+											
+																
+									if (dateOne > dateTwo) 
+									{  
+										agingvalue="";
+									}
+									
+									else if(diffDays=="0")
+									{
+										agingvalue="Today Is the Last Date";
+										diffDays="";
+									}
+									else
+									{
+										agingvalue=" -Days Remaining";
+									}
+									if(eedate0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="No Exp.End Date";
+									}
+									else
+									{
+										tabCell.innerHTML = diffDays+agingvalue;
+									}
+									 
+									
+									tabCell = tr.insertCell(-1);
+									tabCell.innerHTML = json.records[i].REMARKS;
+									tabCell = tr.insertCell(-1);
+									
+									
+									var esd0=json.records[i].EXPECTED_START_DATE;
+									if(esd0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML ="Not Defined";
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									var esd1=date = new Date(esd0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									asdfinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML =asdfinal;
+									tabCell = tr.insertCell(-1);
+									}
+									
+									var asd0=json.records[i].ACTUAL_START_DATE;
+									if(asd0=="NaN/NaN/NaN")
+									{
+										var ns="Not Started";
+										tabCell.innerHTML =ns;
+									tabCell = tr.insertCell(-1);
+									}
+									else
+									{
+									var asd1=date = new Date(asd0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									asdfinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML =asdfinal;
+									tabCell = tr.insertCell(-1);
+									}
+		
+									var eedate0=json.records[i].EXPECTED_END_DATE;
+									
+									if(eedate0=="NaN/NaN/NaN")
+									{
+										tabCell.innerHTML = "Not Defined";
+									}
+									else
+									{
+									var eedate1=date = new Date(eedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									eedatefinal=""+month+"/"+dt+"/"+year+"";
+									tabCell.innerHTML = eedatefinal;
+									}
+									tabCell = tr.insertCell(-1);
+									
+									var aedate0=json.records[i].ACTUAL_END_DATE;
+									var tempflag="";
+								
+									if(aedate0=="NaN/NaN/NaN")
+									{
+										tempflag="Not Defined";
+									    
+									}
+									else
+									{
+									var aedate1=date = new Date(aedate0);
+									year = date.getFullYear();
+									month = date.getMonth()+1;
+									dt = date.getDate();
+									aedatefinal=""+month+"/"+dt+"/"+year+"";
+									tempflag=aedatefinal;
+									
+									}
+									tabCell.innerHTML = tempflag;
+								
+									
+								}
+								
+						
+						stopspin();
+	    });
+		
+
+}
+function stopspin()
+	{
+		
+		document.getElementById("loading").style.visibility = "hidden";
+		document.getElementById("loading2").style.visibility = "hidden";
+	}
+	 	
+		function filter()
+		{
+			alert("ok");
+		}
+
+
+</script>
+
+
+
+
+
+</head>
+
+<body>
+<div align="center" style="position:fixed;background:#000000; width:99%; height:98%; opacity:0.5;" id="loading2">
+<script>
+document.write(flag);
+</script>
+<div class="loader2" style=" position:fixed;top:35%; left:44%;" id="loading"></div>
+</div>
+<div style=" height: 117px; width:100%" class="one-edge-shadow">
+  <table width="100%" height="117" border="0" style="height: inherit; text-align: center; font-family: 'RobotoCondensed Regular'; font-size: 14px;">
+    <tr>
+      <td width="248" height="113"><img src="IIB-logo-small.png" width="242" height="65" /></td>
+      <td width="12" style="text-align: center; font-family: Arial;">&nbsp;</td>
+      <td width="130" style="text-align: center; font-family: Arial;"><a href="pad_assign.html" style="text-decoration: none;">ASSIGN WORK</a></td>
+      <td width="115"><a href="pad_view (All).html"style="text-decoration: none;">VIEW WORK</a></td>
+      <td width="99"><a href="viewforedit.html" style="text-decoration: none;">EDIT WORK</a></td>
+      <td width="140" bgcolor="#FFFFFF">DIVISIONWISE</td>
+      <td width="341" bgcolor="#FFFFFF"><div align="right"><img src="Skill-&amp;-NSDC-Logo-SMALL22.jpg" width="208" height="93" /></div></td>
+    </tr>
+  </table>
+</div>
+<div>&nbsp;
+  <table width="100%" border="0">
+    <tr>
+      <td width="98" style="text-align: right">Division Name :</td>
+      <td width="148"><label for="asd"></label>
+        <select name="asd" size="1" id="asd">
+         <option value="IIB MANAGEMENT" selected="selected">IIB MANAGEMENT</option>
+     <option value="CEO">DD-CEO</option>
+     <option value="CFO">DD-CFO</option>
+     <option value="ED">EDD-ED</option>
+     <option value="MIS">MIS-MH</option>
+     <option value="CAO">MIS-CAO</option>
+     <option value="LH">LD-LH</option>
+     <option value="BEMW">BED-BEMW</option>
+     <option value="AQC">ACD-AQC</option>
+     <option value="AM">AD-AM</option>
+     <option value="SPC">PDD-SPC</option>
+     <option value="SAF">FAD-SAF</option>
+     <option value="SAP">PAD-SAP</option>
+     <option value="PAO">PAD-PAO</option>
+     <option value="SAO">AAD-SAO</option>
+     <option value="CH">CDD-CH</option>
+     <option value="EC">ED-EC</option>
+     <option value="GMBD">BED-GMBD</option>
+     <option value="FC">FEE-FC</option>
+     <option value="SFO">FCD-SFO</option>
+     <option value="FM">FUND-FM</option>
+     <option value="PM">PD-PM</option>
+     <option value="SCD">CDD-SCD</option>
+     <option value="PM-KELTRON">PM-KELTRON</option>
+     <option value="PM-CCEK">PM-CCEK</option>
+     <option value="PM-DB">PM-DB</option>
+     <option value="PM-NSDC">PM-NSDC</option>
+     <option value="PM-DDUGKY">PM-DDUGKY</option>
+     <option value="PM-STC">PM-STC</option>
+     <option value="PM-JAIL">PM-JAIL</option>
+     <option value="SPM">PDC-SPM</option>
+     <option value="SPM">PDC-SAC</option>
+     <option value="RM">RDT-RM</option>
+     <option value="SC">SCD-SC</option>
+     <option value="SAH">SAD-SAH</option>
+     <option value="RC">RR-RC</option>
+      <option value="HRM">HRD-HRM</option>
+      <option value="SAB">MMDSAB</option>
+      <option value="-">-</option>
+      </select></td>
+      <td width="49" class="aaaa">Status :</td>
+      <td width="139"><select name="asd2" id="asd2">
+        <option value="WORK STARTED">WORK STARTED</option>
+     <option value="WORK PROGRESSING">WORK PROGRESSING</option>
+     <option value="WORK POSTPONED">WORK POSTPONED</option>
+     <option value="WORK FINISHED">WORK FINISHED</option>
+     <option value="APPROVAL PENDING">APPROVAL PENDING </option>
+     <option value="WORK NOT STARTED">WORK NOT STARTED</option>
+     <option value="-">-</option>
+      </select></td>
+      <td width="58" class="dggdg">Aging :</td>
+      <td width="218"><select name="asd3" id="asd3">
+      
+        <option value="CEO">Greater Than(>)</option>
+        <option value="CFO">Less Than (>)</option>
+        <option value="ED">Equals (=)</option>
+        <option value="MIS">Greater Than or Equals to (>=)</option>
+        <option value="MIS">less Than or Equals to (>=)</option>
+        <option value="-">-</option>
+      </select></td>
+      <td width="146"><label for="scasa"></label>
+      <input type="text" name="scasa" id="scasa" /></td>
+      <td width="208"><button onclick="filter()">Filter</button></td>
+    </tr>
+  </table>
+</div>
+
+<table width="100%" id="customers" style="width:100%; table-layout:auto;">
+  <tr style="text-align:justify">
+    <th width="5%">SL.NO</th>
+    <th width="8%">PROJECT NAME</th> 
+    <th width="4%">TASK</th>
+    <th width="8%">DESCRIPTION</th>
+    <th width="6%">STATUS</th> 
+    <th width="8%">DIVISION NAME</th>
+    <th width="8%">ASSIGNED TO</th>
+    <th width="5%">AGING</th>
+    <th width="7%">REMARKS</th> 
+    <th width="10%">EXPECTED START DATE</th>
+    <th width="9%">ACTUAL START DATE</th>
+    <th width="10%">EXPECTED END DATE</th> 
+    <th width="12%">ACTUAL END DATE</th>
+  </tr>
+  <tr>
+  
+ 								
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
