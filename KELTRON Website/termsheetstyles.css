@@ -1,0 +1,57 @@
+/* CSS Document */
+
+.mainborder
+{
+ border-style: dashed;
+ width: 210mm;
+    height: 297mm;
+	position:static;
+	margin: auto;
+
+}
+
+.rcorners1 {
+  border-radius: 25px;
+  border: 2px solid #000000;
+  background: #009999;
+  padding: 20px; 
+  width: 90%;
+  vertical-align:middle;
+  height: auto;  
+  position:static;
+	margin: auto;
+}
+
+.rcorners2 {
+  border-radius: 25px;
+   border: 2px solid #000000;
+  background: #009999;
+  padding: 20px; 
+  width: auto;
+  vertical-align:middle;
+  height: 70px;  
+  position:static;
+	margin: auto;
+}
+.rcorners3 {
+  border-radius: 25px;
+   border: 2px solid #000000;
+  background: #009999;
+  padding: 20px; 
+  width: auto;
+  vertical-align:middle;
+  height: 20px;  
+  position:static;
+	margin: auto;
+}
+.rcorners0 {
+  border-radius: 25px;
+   border: 2px solid #000000;
+  background: #009999;
+  padding: 20px; 
+  width: auto;
+  vertical-align:middle;
+  height: auto;  
+  position:static;
+	margin: auto;
+}
